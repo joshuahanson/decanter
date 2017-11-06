@@ -1,0 +1,42 @@
+$accordion-icon-padding: rem-calc(24) !default;
+$accordion-icon-positioning: 0 !default;
+$accordion-icon-width: rem-calc(60) !default;
+$accordion-icon-height: 100% !default;
+$accordion-icon-font-family: "FontAwesome" !default;
+$accordion-icon-font-value: "" !default;
+$accordion-icon-font-align: center !default;
+$accordion-darkened-background: darken(fa-get-color(primary), 8%) !default;
+$accordion-title-font-size: rem-calc(22);
+
+@mixin accordion-arrow {
+    &:before {
+        content: $accordion-icon-font-value;
+        padding-top: $accordion-icon-padding;
+        margin: $accordion-icon-positioning;
+        top: $accordion-icon-positioning;
+        right: $accordion-icon-positioning;
+        width: $accordion-icon-width;
+        height: $accordion-icon-height;
+        font-family: $accordion-icon-font-family;
+        text-align: $accordion-icon-font-align;
+        background-color: $accordion-darkened-background;
+    }
+}
+
+@mixin accordion-title {
+    padding: rem-calc(22 0 22 22);
+    font-size: $accordion-title-font-size;
+    color: fa-get-color(black);
+    background-color: fa-get-color(primary);
+    text-transform: uppercase;
+    &:hover {
+        background-color: $accordion-darkened-background;
+    }
+}
+
+@mixin apply-faq-components {
+    .accordion-title {
+        @include accordion-arrow;
+        @include accordion-title;
+    }
+}

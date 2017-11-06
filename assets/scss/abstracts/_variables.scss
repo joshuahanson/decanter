@@ -1,0 +1,55 @@
+//Fonts
+$rem-base: 16px !default;
+$base-font-size: 16px !default;
+$base-font-family-sans: 'Avenir' !default;
+$base-font-family-mono: 'Roboto Mono' !default;
+$base-font-family-serif: 'Abril Fatface' !default;
+$base-font-weight-light: 300 !default;
+$base-font-weight-normal: 400 !default;
+$base-font-weight-bold: 700 !default;
+
+//Breakpoints
+$breakpoint: (
+  'small': 0,
+  'medium': 600,
+  'large': 900,
+  'xlarge': 1200,
+  'xxlarge': 1600,
+  ) !default;
+
+$print-breakpoint: large !default;
+$zero-breakpoint: small !default;
+$breakpoints-keys: map-to-list($breakpoint, 'keys') !default;
+$breakpoint-classes: (small medium large xlarge xxlarge) !default;
+
+// Default Padding
+$defaultPadding: (
+  'small' : 36px 16px,
+  'medium': 36px 24px,
+  'large' : 64px 88px
+  ) !default;
+
+//Colors
+$fa-colors: (
+    primary: #c41e3a,
+    ruby: #c62a45,
+    white: #ffffff,
+    black: #353535,
+    spacegray: #564647,
+    tangerine: #ff9940,
+    success: #3adb76,
+    warning: #ffae00,
+    alert: #cc4b37
+) !default;
+
+//Transitions
+$fa-transition-target: all !default;
+$fa-transition-speed: 0.3s !default;
+$fa-transition-animation: ease !default;
+$fa-transition-default-value: $fa-transition-target $fa-transition-speed $fa-transition-animation !default;
+
+//Z-Index
+$fa-zindex: (
+    hero-button: 5,
+    sub-menu: 10
+) !default;

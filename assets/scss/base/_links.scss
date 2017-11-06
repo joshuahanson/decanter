@@ -1,0 +1,11 @@
+$fa-link-color: fa-get-color(primary);
+$fa-link-hover-color: darken($fa-link-color, 8%);
+
+a {
+    color: $fa-link-color;
+
+    &:hover,
+    &:focus {
+        color: $fa-link-hover-color;
+    }
+}

@@ -1,0 +1,8 @@
+@function fa-get-zindex($key) {
+    @if map-has-key($fa-zindex, $key) {
+        @return map-get($fa-zindex, $key);
+    }
+    @else {
+        @error "given $key is not available in $fa-zindex";
+    }
+}

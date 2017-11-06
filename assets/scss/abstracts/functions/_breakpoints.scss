@@ -1,0 +1,148 @@
+@if nth(map-values($breakpoint), 1) != 0 {
+    @error 'Your smallest breakpoint (defined in $breakpoint) must be set to "0".';
+}
+@else {
+    $zero-breakpoint: nth(map-keys($breakpoint), 1);
+}
+
+@function breakpoint($val: $zero-breakpoint) {
+    $bp: nth($val, 1);
+    $bp-max: 0;
+
+    $dir: if(length($val) > 1, nth($val, 2), up);
+    $str: "";
+    $named: false;
+
+    // Orientation media queries have a unique syntax
+    @if $bp == "landscape" or $bp == "portrait" {
+        @return "(orientation: #{$bp})";
+    }
+    @else if $bp == "retina" {
+        @return "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
+    }
+
+    // Try to pull a named breakpoint out of the $breakpoints map
+    @if type-of($bp) == "string" {
+        @if map-has-key($breakpoint, $bp) {
+            @if $dir == "only" or $dir == "down" {
+                $bp-max: map-next($breakpoint, $bp);
+            }
+
+            $bp: map-get($breakpoint, $bp);
+            $named: true;
+        }
+        @else {
+            $bp: 0;
+
+            @warn 'breakpoint(): "#{$val}" is not defined in your $breakpoints setting.';
+        }
+    }
+
+    $bp: rem-calc($bp);
+
+    @if $bp-max {
+        $bp-max: rem-calc($bp-max);
+    }
+
+    @if $bp > 0rem or $dir == "only" or $dir == "down" {
+        // `only` ranges use the format `(min-width: n) and (max-width: n)`
+        @if $dir == "only" {
+            // Only named media queries can have an "only" range
+            @if $named == true {
+                // Only use "min-width" if the floor is greater than 0
+                @if $bp > 0rem {
+                    $str: $str + "(min-width: #{$bp})";
+
+                    // Only add "and" to the media query if there's a ceiling
+                    @if $bp-max != null {
+                        $str: $str + " and ";
+                    }
+                }
+
+                // Only use "max-width" if there's a ceiling
+                @if $bp-max != null {
+                    $str: $str + "(max-width: #{$bp-max})";
+                }
+            }
+            @else {
+                @warn "breakpoint(): Only named media queries can have an `only` range.";
+            }
+        }
+        @else if $dir == "down" {
+            $max: if($named, $bp-max, $bp);
+
+            @if $named or $bp > 0rem {
+                @if $max != null {
+                    $str: $str + "(max-width: #{$max})";
+                }
+            }
+        }
+        @else if $bp > 0rem {
+            $str: $str + "(min-width: #{$bp})";
+        }
+    }
+
+    @return $str;
+}
+
+@mixin breakpoint($value) {
+    $str: breakpoint($value);
+    $bp: index($breakpoints-keys, $value);
+    $pbp: index($breakpoints-keys, $print-breakpoint);
+
+    @if $str == "" {
+        @content;
+    }
+    @else {
+        @if $bp != null and $bp <= $pbp {
+            @media print, screen and #{$str} {
+                @content;
+            }
+        }
+        @else {
+            @media screen and #{$str} {
+                @content;
+            }
+        }
+    }
+}
+
+@function map-next($map, $key) {
+    $values: map-keys($map);
+    $i: 0;
+
+    @if map-has-key($map, $key) {
+        $i: index($values, $key) + 1;
+    }
+
+    @if $i > length($map) or $i == 0 {
+        @return null;
+    }
+    @else {
+        @return map-get($map, nth($values, $i));
+    }
+}
+
+@if map-has-key($breakpoint, small) {
+    $small-up: screen;
+    $small-only: unquote("screen and #{breakpoint(small only)}");
+}
+
+@if map-has-key($breakpoint, medium) {
+    $medium-up: unquote("screen and #{breakpoint(medium)}");
+    $medium-only: unquote("screen and #{breakpoint(medium only)}");
+}
+
+@if map-has-key($breakpoint, large) {
+    $large-up: unquote("screen and #{breakpoint(large)}");
+    $large-only: unquote("screen and #{breakpoint(large only)}");
+}
+
+@if map-has-key($breakpoint, xlarge) {
+    $xlarge-up: unquote("screen and #{breakpoint(xlarge)}");
+    $xlarge-only: unquote("screen and #{breakpoint(xlarge only)}");
+}
+
+@if map-has-key($breakpoint, xxlarge) {
+    $xxlarge-up: unquote("screen and #{breakpoint(xxlarge)}");
+}

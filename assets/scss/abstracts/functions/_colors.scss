@@ -1,0 +1,8 @@
+@function fa-get-color($key) {
+    @if map-has-key($fa-colors, $key) {
+        @return map-get($fa-colors, $key);
+    }
+    @else {
+        @error "given $key is not available in $fa-colors";
+    }
+}

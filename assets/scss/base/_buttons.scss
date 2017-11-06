@@ -1,0 +1,60 @@
+$fa-button-color: fa-get-color(white) !default;
+$fa-button-background: fa-get-color(primary) !default;
+$fa-button-background-hover: darken(fa-get-color(primary), 15%) !default;
+$fa-button-font-size: rem-calc(18);
+$fa-button-font-weight: 700 !default;
+$fa-button-padding: (small: rem-calc(12 20), medium: rem-calc(18 55));
+$fa-button-text-transform: uppercase;
+$fa-button-border-width: rem-calc(2);
+$fa-button-border-style: solid;
+
+@mixin fa-button($background: $fa-button-background, $background-hover: $fa-button-background-hover) {
+    margin: 0;
+    width: auto;
+    padding: map-get($fa-button-padding, small);
+    cursor: pointer;
+    color: $fa-button-color;
+    font-size: $fa-button-font-size;
+    font-weight: $fa-button-font-weight;
+    text-transform: $fa-button-text-transform;
+    background-color: $background;
+    transition: $fa-transition-default-value;
+    z-index: fa-get-zindex(hero-button);
+
+    &:hover,
+    &:focus {
+        background-color: $background-hover;
+        color: $fa-button-color;
+    }
+
+    @include breakpoint(medium) {
+        padding: map-get($fa-button-padding, medium);
+    }
+}
+
+@mixin fa-button-hollow {
+    @include fa-button($background: $fa-button-background, $background-hover: $fa-button-background-hover);
+
+    border-color: $fa-button-color;
+    border-width: $fa-button-border-width;
+    border-style: $fa-button-border-style;
+
+    &.red {
+        border-color: red;
+    }
+
+    &:hover,
+    &:focus {
+        color: red;
+    }
+}
+
+.fa-button,
+button,
+input[type="submit"] {
+    @include fa-button;
+}
+
+.button-hollow {
+    @include fa-button-hollow;
+}

@@ -1,0 +1,21 @@
+$fa-flex-flow: row wrap !default;
+$fa-flex-align: center !default;
+$fa-flex-justify: space-between !default;
+
+@mixin flex-row-align($flex-flow: $fa-flex-flow, $align-items: $fa-flex-align, $justify-content: $fa-flex-justify) {
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    flex-flow: $flex-flow;
+    align-items: $align-items;
+    justify-content: $justify-content;
+}
+
+.flex-grid {
+    @include flex-row-align;
+}
+
+.flex-no-wrap-justify-space-around-really-specific-css {
+    @include flex-row-align(row, center, space-around);
+    background-color: fa-get-color(primary);
+}

@@ -1,0 +1,47 @@
+@mixin apply-media-card-components {
+    .media_collection {
+        @include flex-row-align($align-items: stretch, $justify-content: end);
+        padding: rem-calc(32 0);
+
+        .media_card {
+            flex: 1 1 auto;
+
+            @include breakpoint(medium) {
+                flex: 1 1 50%;
+            }
+
+            @include breakpoint(large) {
+                flex: 1 1 25%;
+                max-width: 25%;
+            }
+        }
+
+        .media_card-container {
+            padding: rem-calc(16);
+            height: 100%;
+        }
+
+        .media_card-link {
+            display: flex;
+            background: #fafafa;
+            box-shadow: rem-calc(0 2 9) #999;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .media_card-title-text {
+            padding: rem-calc(20);
+            font-size: rem-calc(20);
+            color: fa-get-color(primary);
+        }
+
+        .media_card-image-container {
+            overflow: hidden;
+            max-height: rem-calc(300);
+        }
+
+        .media_card-image {
+            width: 100%;
+        }
+    }
+}

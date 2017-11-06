@@ -1,0 +1,80 @@
+body {
+    font-size: $base-font-size;
+    font-weight: $base-font-weight-normal;
+    font-family: $base-font-family-sans, "Helvetica", "sans-serif";
+    color: fa-get-color(black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: rem-calc(18);
+}
+
+p {
+    font-size: rem-calc(18);
+}
+
+@mixin clear-list-styles {
+    list-style-type: none;
+    padding: 0;
+}
+
+@mixin apply-font-stack($font-family) {
+    font-family: $font-family;
+}
+
+@mixin heading-style-h1 {
+    @include apply-font-stack($base-font-family-sans);
+
+    margin-bottom: rem-calc(38);
+    font-size: rem-calc(72);
+    font-weight: $base-font-weight-bold;
+    color: fa-get-color(black);
+}
+
+@mixin heading-style-h2 {
+    @include apply-font-stack($base-font-family-sans);
+
+    font-size: rem-calc(48);
+    font-weight: $base-font-weight-bold;
+    color: fa-get-color(spacegray);
+}
+
+@mixin heading-style-h3 {
+    @include apply-font-stack($base-font-family-mono);
+
+    font-size: rem-calc(30);
+    font-weight: $base-font-weight-normal;
+}
+
+@mixin heading-style-h4 {
+    @include apply-font-stack($base-font-family-sans);
+
+    font-size: rem-calc(30);
+    font-weight: $base-font-weight-light;
+}
+
+h1 {
+    @include heading-style-h1;
+}
+
+h2 {
+    @include heading-style-h2;
+}
+
+h3 {
+    @include heading-style-h3;
+}
+
+h4 {
+    @include heading-style-h4;
+}
+
+ul.clear-list {
+    @include clear-list-styles;
+}
