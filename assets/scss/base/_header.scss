@@ -2,6 +2,6 @@ $header-bar-padding: rem-calc(22 14) !default;
 $top-bar-background: #f8f8f8 !default;
 
 .top-bar {
-    padding: $header-bar-padding;
     background-color: $top-bar-background;
+    padding: $header-bar-padding;
 }

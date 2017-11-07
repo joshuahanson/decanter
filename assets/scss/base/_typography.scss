@@ -1,8 +1,8 @@
 body {
+    color: fa-get-color(black);
+    font-family: $base-font-family-sans, 'Helvetica', 'sans-serif';
     font-size: $base-font-size;
     font-weight: $base-font-weight-normal;
-    font-family: $base-font-family-sans, "Helvetica", "sans-serif";
-    color: fa-get-color(black);
 }
 
 h1,
@@ -11,8 +11,8 @@ h3,
 h4,
 h5,
 h6 {
-    margin-top: 0;
     margin-bottom: rem-calc(18);
+    margin-top: 0;
 }
 
 p {
@@ -31,18 +31,18 @@ p {
 @mixin heading-style-h1 {
     @include apply-font-stack($base-font-family-sans);
 
-    margin-bottom: rem-calc(38);
+    color: fa-get-color(black);
     font-size: rem-calc(72);
     font-weight: $base-font-weight-bold;
-    color: fa-get-color(black);
+    margin-bottom: rem-calc(38);    
 }
 
 @mixin heading-style-h2 {
     @include apply-font-stack($base-font-family-sans);
 
+    color: fa-get-color(spacegray);
     font-size: rem-calc(48);
     font-weight: $base-font-weight-bold;
-    color: fa-get-color(spacegray);
 }
 
 @mixin heading-style-h3 {

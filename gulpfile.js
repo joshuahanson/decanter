@@ -13,6 +13,7 @@ const gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     uglify = require('gulp-uglify'),
     clean = require('gulp-clean'),
+    sassLint = require('gulp-sass-lint'),
     browser = require('browser-sync').create();
 
 const paths = {
@@ -74,6 +75,26 @@ gulp.task('browser-sync', ['styles'], function () {
         }
     });
 });
+
+gulp.task('sass:lint', function () {
+    return gulp.src('./assets/scss/**/*.scss')
+        .pipe(sassLint({
+            rules: {
+                'indentation': 0,
+                'leading-zero': 0,
+                'force-element-nesting': 0,
+                'force-attribute-nesting': 0,
+                'force-pseudo-nesting': 0,
+                'no-vendor-prefixes': 0,
+                'no-qualifying-elements': 0,
+                'no-color-keywords': 0,
+                'no-color-literals': 0,
+                'class-name-format': 0
+            }
+        }))
+        .pipe(sassLint.format())
+        .pipe(sassLint.failOnError())
+})
 
 gulp.task('default', function () {
     gulp.start('styles');

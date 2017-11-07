@@ -9,16 +9,16 @@ $fa-button-border-width: rem-calc(2);
 $fa-button-border-style: solid;
 
 @mixin fa-button($background: $fa-button-background, $background-hover: $fa-button-background-hover) {
-    margin: 0;
-    width: auto;
-    padding: map-get($fa-button-padding, small);
-    cursor: pointer;
+    background-color: $background;
     color: $fa-button-color;
+    cursor: pointer;
     font-size: $fa-button-font-size;
     font-weight: $fa-button-font-weight;
+    margin: 0;
+    padding: map-get($fa-button-padding, small);
     text-transform: $fa-button-text-transform;
-    background-color: $background;
     transition: $fa-transition-default-value;
+    width: auto;
     z-index: fa-get-zindex(hero-button);
 
     &:hover,
@@ -36,8 +36,8 @@ $fa-button-border-style: solid;
     @include fa-button($background: $fa-button-background, $background-hover: $fa-button-background-hover);
 
     border-color: $fa-button-color;
-    border-width: $fa-button-border-width;
     border-style: $fa-button-border-style;
+    border-width: $fa-button-border-width;
 
     &.red {
         border-color: red;
@@ -51,7 +51,7 @@ $fa-button-border-style: solid;
 
 .fa-button,
 button,
-input[type="submit"] {
+input[type='submit'] {
     @include fa-button;
 }
 

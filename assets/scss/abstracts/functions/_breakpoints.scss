@@ -1,7 +1,6 @@
 @if nth(map-values($breakpoint), 1) != 0 {
     @error 'Your smallest breakpoint (defined in $breakpoint) must be set to "0".';
-}
-@else {
+} @else {
     $zero-breakpoint: nth(map-keys($breakpoint), 1);
 }
 

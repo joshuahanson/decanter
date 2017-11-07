@@ -3,12 +3,12 @@ $fa-flex-align: center !default;
 $fa-flex-justify: space-between !default;
 
 @mixin flex-row-align($flex-flow: $fa-flex-flow, $align-items: $fa-flex-align, $justify-content: $fa-flex-justify) {
-    display: flex;
-    margin-right: auto;
-    margin-left: auto;
-    flex-flow: $flex-flow;
     align-items: $align-items;
+    display: flex;
+    flex-flow: $flex-flow;
     justify-content: $justify-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .flex-grid {

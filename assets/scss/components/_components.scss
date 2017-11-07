@@ -1,5 +1,5 @@
-@import "faq.scss";
-@import "media-cards.scss";
+@import 'faq';
+@import 'media-cards';
 
-@include apply-faq-components();
-@include apply-media-card-components();
+@include apply-faq-components;
+@include apply-media-card-components;
